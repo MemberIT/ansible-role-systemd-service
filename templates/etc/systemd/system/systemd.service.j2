@@ -1,96 +1,96 @@
 # {{ ansible_managed }}
 
 [Unit]
-Description="{{ item.value.description | default("Service for " + item.key) }}"
-{% if item.value.wants is defined %}
-Wants={{ item.value.wants }}
+Description="{{ systemd_service['item'].description | default("Service for " + item) }}"
+{% if systemd_service['item'].wants is defined %}
+Wants={{ systemd_service['item'].wants }}
 {% endif -%}
-{% if item.value.requires is defined %}
-Requires={{ item.value.requires }}
+{% if systemd_service['item'].requires is defined %}
+Requires={{ systemd_service['item'].requires }}
 {% endif -%}
-{% if item.value.before is defined %}
-Before={{ item.value.before }}
+{% if systemd_service['item'].before is defined %}
+Before={{ systemd_service['item'].before }}
 {% endif -%}
-{% if item.value.after is defined %}
-After={{ item.value.after }}
+{% if systemd_service['item'].after is defined %}
+After={{ systemd_service['item'].after }}
 {% endif %}
 
 [Service]
-{% if item.value.type is defined %}
-Type={{ item.value.type }}
+{% if systemd_service['item'].type is defined %}
+Type={{ systemd_service['item'].type }}
 {% endif -%}
-{% if item.value.pid_file is defined %}
-PIDFile={{ item.value.pid_file }}
-{% endif -%}
-
-{% if item.value.timeout_sec is defined %}
-TimeoutSec={{ item.value.timeout_sec }}
-{% endif -%}
-{% if item.value.restart is defined %}
-RestartSec={{ item.value.restart_sec | default('30') }}
-Restart={{ item.value.restart }}
+{% if systemd_service['item'].pid_file is defined %}
+PIDFile={{ systemd_service['item'].pid_file }}
 {% endif -%}
 
-{% if item.value.environment is defined %}
-{% for env in item.value.environment %}
+{% if systemd_service['item'].timeout_sec is defined %}
+TimeoutSec={{ systemd_service['item'].timeout_sec }}
+{% endif -%}
+{% if systemd_service['item'].restart is defined %}
+RestartSec={{ systemd_service['item'].restart_sec | default('30') }}
+Restart={{ systemd_service['item'].restart }}
+{% endif -%}
+
+{% if systemd_service['item'].environment is defined %}
+{% for env in systemd_service['item'].environment %}
 Environment={{ env }}
 {% endfor -%}
 {% endif -%}
-{% if item.value.environment_file is defined %}
-EnvironmentFile={{ item.value.environment_file }}
+{% if systemd_service['item'].environment_file is defined %}
+EnvironmentFile={{ systemd_service['item'].environment_file }}
 {% endif -%}
 
-{% if item.value.working_directory is defined %}
-WorkingDirectory={{ item.value.working_directory }}
+{% if systemd_service['item'].working_directory is defined %}
+WorkingDirectory={{ systemd_service['item'].working_directory }}
 {% endif -%}
-{% if item.value.user is defined %}
-User={{ item.value.user }}
+{% if systemd_service['item'].user is defined %}
+User={{ systemd_service['item'].user }}
 {% endif -%}
-{% if item.value.group is defined %}
-Group={{ item.value.group }}
-{% endif -%}
-
-{% if item.value.oom_score_adjust is defined %}
-OOMScoreAdjust={{ item.value.oom_score_adjust }}
-{% endif -%}
-{% if item.value.nice is defined %}
-Nice={{ item.value.nice }}
+{% if systemd_service['item'].group is defined %}
+Group={{ systemd_service['item'].group }}
 {% endif -%}
 
-{% if item.value.exec_stop is defined %}
-ExecStop={{ item.value.exec_stop }}
+{% if systemd_service['item'].oom_score_adjust is defined %}
+OOMScoreAdjust={{ systemd_service['item'].oom_score_adjust }}
 {% endif -%}
-{% if item.value.exec_stop_post is defined %}
-ExecStopPost={{ item.value.exec_stop_post }}
-{% endif -%}
-{% if item.value.exec_reload is defined %}
-ExecReload={{ item.value.exec_reload }}
+{% if systemd_service['item'].nice is defined %}
+Nice={{ systemd_service['item'].nice }}
 {% endif -%}
 
-{% if item.value.exec_start_pre is defined %}
-ExecStartPre={{ item.value.exec_start_pre }}
+{% if systemd_service['item'].exec_stop is defined %}
+ExecStop={{ systemd_service['item'].exec_stop }}
 {% endif -%}
-{% if item.value.exec_start_post is defined %}
-ExecStartPost={{ item.value.exec_start_post }}
+{% if systemd_service['item'].exec_stop_post is defined %}
+ExecStopPost={{ systemd_service['item'].exec_stop_post }}
 {% endif -%}
-{% if item.value.exec_start is defined %}
-ExecStart={{ item.value.exec_start }}
+{% if systemd_service['item'].exec_reload is defined %}
+ExecReload={{ systemd_service['item'].exec_reload }}
 {% endif -%}
 
-{% if item.value.standard_input is defined %}
-StandardInput={{ item.value.standard_input }}
+{% if systemd_service['item'].exec_start_pre is defined %}
+ExecStartPre={{ systemd_service['item'].exec_start_pre }}
 {% endif -%}
-{% if item.value.standard_output is defined %}
-StandardOutput={{ item.value.standard_output }}
+{% if systemd_service['item'].exec_start_post is defined %}
+ExecStartPost={{ systemd_service['item'].exec_start_post }}
 {% endif -%}
-{% if item.value.standard_error is defined %}
-StandardError={{ item.value.standard_error }}
+{% if systemd_service['item'].exec_start is defined %}
+ExecStart={{ systemd_service['item'].exec_start }}
+{% endif -%}
+
+{% if systemd_service['item'].standard_input is defined %}
+StandardInput={{ systemd_service['item'].standard_input }}
+{% endif -%}
+{% if systemd_service['item'].standard_output is defined %}
+StandardOutput={{ systemd_service['item'].standard_output }}
+{% endif -%}
+{% if systemd_service['item'].standard_error is defined %}
+StandardError={{ systemd_service['item'].standard_error }}
 {% endif %}
 
 [Install]
-{% if item.value.wanted_by is defined %}
-WantedBy={{ item.value.wanted_by }}
+{% if systemd_service['item'].wanted_by is defined %}
+WantedBy={{ systemd_service['item'].wanted_by }}
 {% endif -%}
-{% if item.value.required_by is defined %}
-RequiredBy={{ item.value.required_by }}
+{% if systemd_service['item'].required_by is defined %}
+RequiredBy={{ systemd_service['item'].required_by }}
 {% endif %}
