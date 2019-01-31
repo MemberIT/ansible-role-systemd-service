@@ -74,7 +74,7 @@ ExecStartPre={{ item.value.exec_start_pre }}
 ExecStartPost={{ item.value.exec_start_post }}
 {% endif -%}
 {% if item.value.exec_start is defined %}
-ExecStart={{ item.value.exec_start }}
+ExecStart={{ item.value.exec_start | replace('\n', ' ') }}
 {% endif -%}
 
 {% if item.value.standard_input is defined %}
