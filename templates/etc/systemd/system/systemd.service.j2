@@ -23,6 +23,12 @@ Type={{ item.value.type }}
 PIDFile={{ item.value.pid_file }}
 {% endif -%}
 
+{% if item.value.timeout_start_sec is defined %}
+TimeoutStartSec={{ item.value.timeout_start_sec }}
+{% endif -%}
+{% if item.value.timeout_stop_sec is defined %}
+TimeoutStopSec={{ item.value.timeout_stop_sec }}
+{% endif -%}
 {% if item.value.timeout_sec is defined %}
 TimeoutSec={{ item.value.timeout_sec }}
 {% endif -%}
