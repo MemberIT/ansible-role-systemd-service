@@ -32,6 +32,7 @@ systemd_target: {}
 #     standard_input: ""
 #     standard_output: ""
 #     standard_error: ""
+#     success_exit_status: "0"
 #     wanted_by: ""
 #     required_by: ""
 #
